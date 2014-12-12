@@ -1,6 +1,5 @@
-/* global Hoodie */
+/* global Hoodie, Backbone */
 
-var Backbone = require('backbone');
 Hoodie.extend(function(hoodie) {
   'use strict';
 
