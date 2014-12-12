@@ -1,0 +1,19 @@
+{
+  "name": "hoodie-plugin-backbone",
+  "version": "1.0.0",
+  "authors": [
+    "Gregor Martynus <gregor@martynus.net>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gr2m/hoodie-plugin-backbone.git"
+  },
+  "keywords": [
+    "hoodie",
+    "backbone"
+  ],
+  "description": "Backbone bindings for Hoodie",
+  "dependencies": {
+    "backbone": "^1.1.2"
+  }
+}
