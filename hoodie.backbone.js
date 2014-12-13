@@ -40,7 +40,11 @@ Hoodie.extend(function(hoodie) {
       promise = hoodie.store.add(type, attributes, storeOptions);
       break;
     case 'update':
-      promise = hoodie.store.updateOrAdd(type, id, modelOrCollection.changed, storeOptions);
+      delete attributes._rev;
+      promise = hoodie.store.updateOrAdd(type, id, attributes, storeOptions)
+      .done(function (attributes) {
+        modelOrCollection.set(attributes, {silent: true});
+      });
       break;
     case 'delete':
       promise = hoodie.store.remove(type, id, storeOptions);
