@@ -1,5 +1,4 @@
-Backbone Hoodie plugin
-======================
+# hoodie-plugin-backbone
 
 > Backbone bindings for Hoodie
 
