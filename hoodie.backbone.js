@@ -90,7 +90,6 @@ Hoodie.extend(function(hoodie) {
       }
 
       store = hoodie.store(type);
-
       store.on('add', function (attributes, options) {
         if (options.backbone) {
           return;
@@ -133,6 +132,12 @@ Hoodie.extend(function(hoodie) {
           });
         }
       });
+
+      hoodie.store.on('clear', function() {
+        self.reset([], {
+          hoodie: true
+        });
+      })
     },
 
     sync: hoodieSync
