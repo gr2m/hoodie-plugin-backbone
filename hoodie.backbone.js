@@ -64,7 +64,7 @@ Hoodie.extend(function(hoodie) {
 
   var HoodieModel = Backbone.Model.extend({
     /* must be overwritten */
-    type: undefined,
+    type: null,
 
     constructor: function() {
       Backbone.Model.apply( this, arguments );
@@ -82,9 +82,12 @@ Hoodie.extend(function(hoodie) {
       var self = this;
       var store;
       var type;
+      var hoodieFilter;
       Backbone.Collection.apply( this, arguments );
 
       type = this.model.prototype.type;
+      hoodieFilter = this.hoodie && this.hoodie.filter;
+
       if (! type) {
         throw new Error('collection.model.prototype.type must be set.');
       }
@@ -92,6 +95,10 @@ Hoodie.extend(function(hoodie) {
       store = hoodie.store(type);
       store.on('add', function (attributes, options) {
         if (options.backbone) {
+          return;
+        }
+
+        if (hoodieFilter && hoodieFilter(attributes) === false) {
           return;
         }
 
@@ -105,6 +112,10 @@ Hoodie.extend(function(hoodie) {
         var record;
 
         if (options.backbone) {
+          return;
+        }
+
+        if (hoodieFilter && hoodieFilter(attributes) === false) {
           return;
         }
 
@@ -124,6 +135,10 @@ Hoodie.extend(function(hoodie) {
           return;
         }
 
+        if (hoodieFilter && hoodieFilter(attributes) === false) {
+          return;
+        }
+
         record = self.get(attributes.id);
         if (record) {
           record.set(attributes, {
@@ -137,7 +152,7 @@ Hoodie.extend(function(hoodie) {
         self.reset([], {
           hoodie: true
         });
-      })
+      });
     },
 
     sync: hoodieSync
