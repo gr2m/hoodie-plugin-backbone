@@ -86,7 +86,7 @@ Hoodie.extend(function(hoodie) {
       Backbone.Collection.apply( this, arguments );
 
       type = this.model.prototype.type;
-      hoodieFilter = this.hoodie && this.hoodie.filter;
+      hoodieFilter = this.hoodie && this.hoodie.filter.bind(this);
 
       if (! type) {
         throw new Error('collection.model.prototype.type must be set.');
