@@ -1,4 +1,4 @@
-/* global Hoodie, Backbone */
+/* global Hoodie, Backbone, _ */
 
 Hoodie.extend(function(hoodie) {
   'use strict';
@@ -6,14 +6,17 @@ Hoodie.extend(function(hoodie) {
   function hoodieSync(method, modelOrCollection, options) {
     var attributes, id, promise, type, storeOptions;
 
-    options = options || {};
+    _.defaults(options || (options = {}), {
+      emulateHTTP: Backbone.emulateHTTP,
+      emulateJSON: Backbone.emulateJSON
+    });
 
     if (options.hoodie) {
       return;
     }
 
     id = modelOrCollection.id;
-    attributes = options.attrs || modelOrCollection.toJSON();
+    attributes = options.attrs || modelOrCollection.toJSON(options);
     type = modelOrCollection.type;
 
     if (! type) {
