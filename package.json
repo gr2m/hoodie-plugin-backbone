@@ -4,10 +4,7 @@
   "authors": [
     "Gregor Martynus <gregor@martynus.net>"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/gr2m/hoodie-plugin-backbone.git"
-  },
+  "repository": "github:gr2m/hoodie-plugin-backbone",
   "keywords": [
     "hoodie",
     "backbone"
